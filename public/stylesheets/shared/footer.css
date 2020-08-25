@@ -1,0 +1,7 @@
+footer {
+    position: fixed;
+    bottom: 0px;
+    font-size: var(--small-text-size);
+    left: 50%;
+    transform: translateX(-50%);
+}

@@ -1,7 +1,7 @@
 const fetch = require("node-fetch")
 const fs = require('fs')
-const getInfo = require("/home/niklas/Desktop/git/FFDownloader/js/ffnet/getInfo.js")
-const getText = require("/home/niklas/Desktop/git/FFDownloader/js/ffnet/getText.js")
+const getInfo = require("./getInfo.js")
+const getText = require("./getText.js")
 module.exports = {
     book: async function(fflink, ws) {
 
@@ -30,6 +30,7 @@ module.exports = {
 
         data[0] = info
         if (fs.existsSync("./public/epub/" + info[0] + "[" + info[1] + "].epub")) {
+            ws.send("succmessage:File already on server")
             return ['exists already', info[0], info[1]];
         }
         fflink = fflink.split("/")

@@ -1,3 +1,63 @@
-:root {
-    font-size: 18px;
+@import "shared/variables.css";
+@import "shared/footer.css";
+@import "shared/header.css";
+
+html {
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    font-family: var(--font-family);
+}
+body {
+    color: var(--secondary-color);
+    font-size: var(--main-text-size);
+    background-color: var(--main-color);
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+#inner-container {
+    clear: both;
+    padding: 10px;
+}
+.center {
+    text-align: center;
+}
+ul {
+    list-style: none;
+}
+input {
+    width: 40%;
+    height: 50px;
+}
+button {
+    height: 50px;
+}
+a:link, a:visited {
+    text-decoration: none;
+    color: var(--contrast-color);
+}
+.expanddiv {
+    display: none;
+}
+.contrast {
+    color: var(--contrast-color);
+}
+#expandables {
+    width: 50%;
+    margin: auto;
+}
+.expand {
+    transition: 0.5s;
+    border: solid var(--contrast-color) 2px;
+    border-radius: 10px;
+}
+.expand p {
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    background-color: var(--darker-color);
+    border-radius: 10px 10px 10px 10px;
 }

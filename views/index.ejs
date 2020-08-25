@@ -1,12 +1,39 @@
-
-    <input type="text" name="link" id="link">
-    <button onclick="sendpath()">Convert</button>
-
-<div id="status">
-    <ul id="statusul">
-
-    </ul>
-</div>
-<div id="downloadlink">
+<div id="inner-container">
+    <br>
+    <br>
+    <div id="inner-container-input" class="center">
+        <input type="text" name="link" id="link" placeholder="https://fanfiction.net/...">
+        <button onclick="sendpath()">Convert</button>
+    </div>
+    <br>
+    <br>
+    <div id="expandables">
+        <div class="center expand">
+            <p onclick="expand(0, 'info')" class="center p">Info <span class="contrast">(click to toggle)</span></p>
+            <div id="info" class="center expanddiv">
+                <ul id="infoul">
+                    <li style="color: var(--contrast-color)">Supported sites:</li>
+                    <li>fanfiction.net</li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div class="center expand">
+            <p onclick="expand(1, 'status')" class="center p">Status updates <span class="contrast">(click to toggle)</span></p>
+            <div id="status" class="center expanddiv">
+                <ul id="statusul">
     
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>    
+    <br>
+    <br>
+    <div id="downloadlink" class="center">
+    
+    </div>
 </div>

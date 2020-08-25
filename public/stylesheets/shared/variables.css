@@ -1,0 +1,10 @@
+:root {
+    --secondary-color: white;
+    --main-color: #444444;
+    --darker-color: #222222;
+    --main-text-size: 18px;
+    --big-text-size: 24px;
+    --small-text-size: 16px;
+    --font-family: 'Poppins', 'sans-serif';
+    --contrast-color: rgb(17, 178, 242);
+}

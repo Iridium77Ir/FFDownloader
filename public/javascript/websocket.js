@@ -8,6 +8,7 @@ socket.addEventListener('message', (event) => {
     if (event.data.match(/succmessage:.*/i)) {
         var status = document.createElement('li')
         status.innerHTML = event.data.substring(12, event.data.length)
+        status.style.color = 'lightgreen'
         document.getElementById('statusul').appendChild(status)
     }
     if (event.data.match(/errmessage:.*/i)) {
@@ -22,10 +23,21 @@ socket.addEventListener('message', (event) => {
         downloadlink.href = link
         downloadlink.innerText = 'Download'
         document.getElementById('downloadlink').appendChild(downloadlink)
-        document.getElementById('status').style.display = 'none'
     }
 })
 function sendpath() {
+    document.getElementById('statusul').innerHTML = ""
+    document.getElementById('downloadlink').innerHTML = ""
     var link = document.getElementById('link').value
     socket.send('link:' + link)
+}
+function expand(i, id) {
+    var ps = document.getElementsByClassName('p')
+    if (document.getElementById(id).style.display === "none") {
+        document.getElementById(id).style.display = 'block'
+        ps[i].style.borderRadius = "10px 10px 0 0"
+    } else {
+        document.getElementById(id).style.display = 'none'
+        ps[i].style.borderRadius = "10px 10px 10px 10px"
+    }
 }

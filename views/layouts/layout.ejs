@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 
     <script defer src="/javascript/websocket.js"></script>
-    <title>FFDownloader</title>
+    <title>fanfic.nikober.xyz</title>
 </head>
 <body>
-    <%- include("../partials/header.ejs") %> 
+    <div id="container">
+        <%- include("../partials/header") %> 
     <br>
     <%- body %> 
     <br>
-    <%- include("../partials/footer.ejs") %> 
+    <%- include("../partials/footer") %> 
+    </div>
 </body>
 </html>
