@@ -6,3 +6,5 @@ PORT=? (port for REST)
 WEBSOCKEt=? (port for websocket)
 
 add epub folder to public
+
+change ws server

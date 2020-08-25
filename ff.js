@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ limit: '15mb', extended: false }))
 
 const server = require('http').createServer(app)
 const WebSocket = require('ws')
-const wss = new WebSocket.Server({ server: server, path: '/download'})
+const wss = new WebSocket.Server({ server: server, path: '/download', port: process.env.WEBSOCKET})
 
 app.get("/", async (req, res) => {
     res.render("index")
