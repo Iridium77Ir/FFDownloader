@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ limit: '15mb', extended: false }))
 
 const server = require('http').createServer(app)
 const WebSocket = require('ws')
-const wss = new WebSocket.Server({ server: server, path: '/download', port: process.env.WEBSOCKET})
+const wss = new WebSocket.Server({ server: server, path: '/download'})
 
 app.get("/", async (req, res) => {
     res.render("index")
@@ -26,7 +26,7 @@ app.get("/", async (req, res) => {
 
 wss.on('connection', (ws) => {
     console.log('client connected')
-    ws.send('succmessage:Connection successful')
+    ws.send('conmessage:Connection successful')
 
     ws.on('message', async (message) => {
         if (message.match(/link:.*/i)) {
@@ -48,3 +48,4 @@ wss.on('connection', (ws) => {
 
 server.listen(process.env.WEBSOCKET)
 app.listen(process.env.PORT)
+

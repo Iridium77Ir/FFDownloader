@@ -6,12 +6,19 @@ socket.addEventListener('open', (event) => {
 })
 socket.addEventListener('message', (event) => {
     if (event.data.match(/succmessage:.*/i)) {
-        document.getElementById('nocon').remove()
         var status = document.createElement('li')
         status.innerHTML = event.data.substring(12, event.data.length)
         status.style.color = 'lightgreen'
         document.getElementById('statusul').appendChild(status)
     }
+    if (event.data.match(/conmessage:.*/i)) {
+        document.getElementById('nocon').remove()
+        var status = document.createElement('li')
+        status.innerHTML = event.data.substring(11, event.data.length)
+        status.style.color = 'lightgreen'
+        document.getElementById('statusul').appendChild(status)
+    }
+    
     if (event.data.match(/errmessage:.*/i)) {
         var status = document.createElement('li')
         status.innerHTML = event.data.substring(11, event.data.length)
