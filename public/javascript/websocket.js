@@ -1,4 +1,4 @@
-const wspath  = 'ws://' + window.location.hostname + ':8080/download'
+const wspath  = 'wss://' + window.location.hostname + ':80/download'
 const socket = new WebSocket(wspath)
 
 socket.addEventListener('open', (event) => {
@@ -6,6 +6,7 @@ socket.addEventListener('open', (event) => {
 })
 socket.addEventListener('message', (event) => {
     if (event.data.match(/succmessage:.*/i)) {
+        document.getElementById('nocon').remove()
         var status = document.createElement('li')
         status.innerHTML = event.data.substring(12, event.data.length)
         status.style.color = 'lightgreen'
