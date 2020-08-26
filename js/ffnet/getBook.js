@@ -38,7 +38,6 @@ module.exports = {
 
         for (var i = 1; i < info[3]+1; i++) {
 
-                var resp = await fetch(fflink.concat(i))
                 try {
                     var resp = await fetch(fflink.concat(i))
                     ws.send('succmessage:Successfully connected to fanfiction.net server to fetch chapter:' + i + ' text and title')
