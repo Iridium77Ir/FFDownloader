@@ -31,13 +31,20 @@ socket.addEventListener('message', (event) => {
         downloadlink.href = link
         downloadlink.innerText = 'Download'
         document.getElementById('downloadlink').appendChild(downloadlink)
+        document.getElementById('sendbutton').disabled = false
     }
 })
 function sendpath() {
     document.getElementById('statusul').innerHTML = ""
     document.getElementById('downloadlink').innerHTML = ""
     var link = document.getElementById('link').value
+
+    if (link.match(/https:\/\/.*fanfiction\.net/i) == null) {
+        alert('Please enter a valid url\nIt looks like this "https://fanfiction.net/s/..."')
+    }
+
     socket.send('link:' + link)
+    document.getElementById('sendbutton').disabled = true
 }
 function expand(i, id) {
     var ps = document.getElementsByClassName('p')
