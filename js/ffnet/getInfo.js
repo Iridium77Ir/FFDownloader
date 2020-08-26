@@ -21,7 +21,7 @@ module.exports = {
         if (tags == null) {
             tags = "No Tags"
         }
-        return [title, author, descr, ChapterCount]
+        return [title, author, descr, ChapterCount, tags]
     }
 
 }
@@ -31,17 +31,15 @@ function getTitle(body) {
         {
             return null;
         }
-
     return matches[1];
 }
 function getTags(body) {
-    var matches = body.match(/<span class='xgray xcontrast_txt'>.*<\/div>/i)
+    var matches = body.match(/<span.*class='xgray xcontrast_txt'>.*<\/span>/i)
     if (matches == null)
         {
             return null;
         }
-
-    return matches[1].substring(0, matches[1].length-6);
+    return matches[0];
 }
 function  getAuthor(body) {
     var matches = body.match(/By:<\/span> <a class='xcontrast_txt' href='\/u\/([0-9]+?)\/.*?'>(.+?)<\/a>/i)

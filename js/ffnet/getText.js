@@ -7,16 +7,18 @@ module.exports = {
 
 }
 function getChapTitle(body, chapNum) {
-    var matches = body.match(/<option.*value=.* .*>.*/i);
-    if (matches == null) {
+    //var matches = body.match(/<option.+?value=.+?>/i);
+    //Doesn't work, ff.net is not allowing it, kinda
+    //if (matches == null) {
         return "Chapter " + chapNum
-    }
-    return matches[chapNum];
+    //}
+    //return matches[chapNum];
 }
 function getChapText(body) {
     var matches = body.match(/<div.*class='storytext xcontrast_txt nocopy'.*>([\s\S]+?)<\/div>/i)
     if (matches == null) {
         throw {}
     }
-    return matches[0]
+    var text = matches[0].replace("\'", "'")
+    return text
 }

@@ -69,14 +69,16 @@ module.exports = {
             'content': [
                 {
                     'title': data[0][0],
-                    'data': "written by: " + data[0][1] + "<br>published on: fanfiction.net" + "<br>Chapters: " + data[0][3]
+                    'data': "written by: " + data[0][1] + "<br>published on: fanfiction.net" + "<br>Chapters: " + data[0][3] + "<br>Tags: " + data[0][4]
                 }
             ]
         }
         for (var i = 0; i < data[0][3]; i++) {
+            console.log(i)
+            console.log(data[i+1][0])
             option.content[i+1] = {}
-            option.content[i+1].title = data[1][0]
-            option.content[i+1].data = data[1][1]
+            option.content[i+1].title = data[i+1][0]
+            option.content[i+1].data = data[i+1][1]
         }
 
         return option;
