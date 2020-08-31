@@ -7,7 +7,7 @@ module.exports = {
 
         var data = []    
         try {
-            var resp = await fetch(fflink)
+            var resp = await fetch('https://www.fanfiction.net/s/' + fflink)
             ws.send('succmessage:Successfully connected to fanfiction.net server')
         } catch (err) {
             throw {
@@ -33,14 +33,14 @@ module.exports = {
             ws.send("succmessage:File already on server")
             return ['exists already', info[0], info[1]];
         }
-        fflink = fflink.split("/")
-        fflink = fflink[0] + "/" + fflink[1] + "/" + fflink[2] + "/" + fflink[3] + "/" + fflink[4] + "/"
 
         for (var i = 1; i < info[3]+1; i++) {
 
                 try {
-                    var resp = await fetch(fflink.concat(i))
+                    var resp = await fetch('https://m.fanfiction.net/s/' + fflink + '/' + i)
+                    console.log('https://m.fanfiction.net/s/' + fflink + '/' + i)
                     ws.send('succmessage:Successfully connected to fanfiction.net server to fetch chapter:' + i + ' text and title')
+                    var body = await resp.text()
                 } catch (err) {
                     throw {
                         name: 'Connection Error',
@@ -48,7 +48,6 @@ module.exports = {
                         toSTring: function(){return this.name  + ': ' + this.message}
                     }
                 }
-                var body = await resp.text()
 
                 try {
                     var chapcontent = getText.getChapContent(body, i)
@@ -73,14 +72,11 @@ module.exports = {
                 }
             ]
         }
-        for (var i = 0; i < data[0][3]; i++) {
-            console.log(i)
-            console.log(data[i+1][0])
-            option.content[i+1] = {}
-            option.content[i+1].title = data[i+1][0]
-            option.content[i+1].data = data[i+1][1]
+        for (var i = 1; i < data[0][3]+1; i++) {
+            option.content[i] = {}
+            option.content[i].title = data[i][0]
+            option.content[i].data = data[i][1]
         }
-
         return option;
     }
 

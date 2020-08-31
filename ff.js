@@ -31,7 +31,8 @@ wss.on('connection', (ws) => {
     ws.on('message', async (message) => {
         if (message.match(/link:.*/i)) {
             try {
-                var option = await getBook.book(message.substring(5,message.length), ws)
+                var link = message.substring(5,message.length).split('/')[4]
+                var option = await getBook.book(link, ws)
                 if (option[0] == 'exists already') {
                     ws.send('path:/epub/' + option[1] + "[" + option[2] + "].epub")
                 } else {
