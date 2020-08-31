@@ -68,7 +68,7 @@ module.exports = {
             'content': [
                 {
                     'title': data[0][0],
-                    'data': "written by: " + data[0][1] + "<br>published on: fanfiction.net" + "<br>Chapters: " + data[0][3] + "<br>Tags: " + data[0][4]
+                    'data': "<strong>written by: </strong>" + data[0][1] + "<br><strong>published on: fanfiction.net</strong>" + "<br><strong>Chapters: </strong>" + data[0][3] + "<br><strong>Tags: </strong>" + data[0][4]
                 }
             ]
         }
