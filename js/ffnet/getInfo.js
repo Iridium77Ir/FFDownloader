@@ -39,14 +39,14 @@ function getTags(body) {
         {
             return null;
         }
-    return matches[0];
+    return [matches[0]];
 }
 function  getAuthor(body) {
     var matches = body.match(/By:<\/span> <a class='xcontrast_txt' href='\/u\/([0-9]+?)\/.*?'>(.+?)<\/a>/i)
     if (matches == null) {
             return null;
     }
-    return matches[2];
+    return [matches[2]];
 }
 function  getDescr(body) {
     var matches = body.match(/<div style='margin-top:2px' class='xcontrast_txt'>(.+?)<\/div>/i);

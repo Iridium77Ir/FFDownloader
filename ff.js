@@ -2,12 +2,13 @@ require('dotenv').config()
 
 const express = require('express')
 const app = express()
-const Epub = require("epub-gen")
 const fetch = require("node-fetch")
 const fs = require("fs")
+const epubGenerator = require('epub-generator')
 const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 const getBook = require('./js/ffnet/getBook.js')
+const ebook = require('./js/ffnet/ebook.js')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -36,8 +37,8 @@ wss.on('connection', (ws) => {
                 if (option[0] == 'exists already') {
                     ws.send('path:/epub/' + option[1] + "[" + option[2] + "].epub")
                 } else {
-                    var epub = await new Epub(option, "./public/epub/" + option.title + "[" + option.author + "].epub")
-                    ws.send('path:/epub/' + option.title + "[" + option.author + "].epub")
+                    ebook.createEpub(option, "./public/epub/" + option.title + "[" + option.author + "][" + option.chapterCount+ "].epub")
+                    ws.send("path:/epub/" + option.title + "[" + option.author + "][" + option.chapterCount +"].epub")
                 }
             } catch (err) {
                 ws.send('errmessage:' + err.message)

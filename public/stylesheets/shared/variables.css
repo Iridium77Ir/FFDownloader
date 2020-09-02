@@ -7,4 +7,6 @@
     --small-text-size: 16px;
     --font-family: 'Poppins', 'sans-serif';
     --contrast-color: rgb(17, 178, 242);
+    --error-color: red;
+    --success-color: lightgreen;
 }

@@ -1,0 +1,6 @@
+#loading {
+    border:  3px solid var(--contrast-color);
+    width: 0vw;
+    margin: 0;
+    transition: 0.5s;
+}

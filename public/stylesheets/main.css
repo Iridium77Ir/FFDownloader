@@ -1,5 +1,6 @@
 @import "shared/variables.css";
 @import "shared/header.css";
+@import "shared/loading.css";
 
 html {
     height: 100%;

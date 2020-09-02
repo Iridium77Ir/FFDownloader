@@ -1,3 +1,16 @@
+var startTime, endTime
+function start() {
+    startTime = new Date()
+}
+function end() {
+    endTime = new Date()
+    var timeDiff = endTime - startTime
+    timeDiff /= 1000
+    var seconds = timeDiff
+    console.log(seconds + " seconds")
+}
+
+
 const fetch = require("node-fetch")
 const fs = require('fs')
 const getInfo = require("./getInfo.js")
@@ -29,7 +42,7 @@ module.exports = {
         }
 
         data[0] = info
-        if (fs.existsSync("./public/epub/" + info[0] + "[" + info[1] + "].epub")) {
+        if (fs.existsSync("./public/epub/" + info[0] + "[" + info[1] + "][" + info[3] + "].epub")) {
             ws.send("succmessage:File already on server")
             return ['exists already', info[0], info[1]];
         }
@@ -37,8 +50,8 @@ module.exports = {
         for (var i = 1; i < info[3]+1; i++) {
 
                 try {
+
                     var resp = await fetch('https://m.fanfiction.net/s/' + fflink + '/' + i)
-                    console.log('https://m.fanfiction.net/s/' + fflink + '/' + i)
                     ws.send('succmessage:Successfully connected to fanfiction.net server to fetch chapter:' + i + ' text and title')
                     var body = await resp.text()
                 } catch (err) {
@@ -59,16 +72,19 @@ module.exports = {
                     }
                 }
                 data[i] = chapcontent
+                ws.send("num:" + JSON.stringify([i, info[3]]))
         }
 
         var option = {
-            'title': data[0][0],
-            'author': data[0][1],
+            'title': info[0],
+            'author': info[1],
             'publisher': "fanfiction.net",
+            'chapterCount': info[3],
+            'description': info[2],
             'content': [
                 {
-                    'title': data[0][0],
-                    'data': "<strong>written by: </strong>" + data[0][1] + "<br><strong>published on: fanfiction.net</strong>" + "<br><strong>Chapters: </strong>" + data[0][3] + "<br><strong>Tags: </strong>" + data[0][4]
+                    'title': info[0],
+                    'data':  "<h1>" + info[0] + "</h1><strong>written by: </strong>" + info[1] + "<br><strong>published on: fanfiction.net</strong>" + "<br><strong>Chapters: </strong>" + info[3] + "<br><strong>Tags: </strong>" + info[4] + "<br><strong>Description: </strong>" + info[2]
                 }
             ]
         }
