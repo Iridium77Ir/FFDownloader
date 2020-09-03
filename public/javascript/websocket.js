@@ -32,18 +32,19 @@ socket.addEventListener('message', (event) => {
         loading(1, 1, "error")
     }
     else if (event.data.match(/path:.*/i)) {
+        document.getElementById('progress_num').style.display = "none"
         var link = event.data.substring(5, event.data.length)
         var downloadlink = document.createElement('a')
         downloadlink.href = link
         downloadlink.innerText = 'Download'
         document.getElementById('downloadlink').appendChild(downloadlink)
         document.getElementById('sendbutton').disabled = false
-        loading(1, 1, "success")
+        
     }   
 })
 function sendpath() {
     document.getElementById('statusul').innerHTML = ""
-    document.getElementById('downloadlink').innerHTML = ""
+    document.getElementById('downloadlink').innerHTML = ' <p id="progress_num"></p>'
     var link = document.getElementById('link').value
 
     if (link.match(/https:\/\/.*fanfiction\.net/i) == null) {
@@ -53,7 +54,7 @@ function sendpath() {
     socket.send('link:' + link)
     document.getElementById('sendbutton').disabled = true
 
-    loading(1, 100, "")
+    loading(10, 1000, "")
 }
 function expand(i, id) {
     var ps = document.getElementsByClassName('p')
@@ -68,12 +69,19 @@ function expand(i, id) {
 function loading(done, total, status) {
     var width = done/total*100  
     if (status == "error") {
+        document.getElementById('progress_num').innerText = "Error"
+        document.getElementById('progress_num').style.color = "red"
         document.getElementById('loading').style.border = "3px solid var(--error-color)"
     }
     if (status == "success") {
         document.getElementById('loading').style.border = "3px solid var(--success-color)"
     }
-    if (status = "") {
+    if (status == "") {
+        if (total != 1000) {
+            document.getElementById('progress_num').innerText = done + "/" + total + " Chapters"
+            document.getElementById('progress_num').style.color = "var(--contrast-color)"
+            document.getElementById('loading').style.border = "3px solid var(--contrast-color)"
+        }
         document.getElementById('loading').style.border = "3px solid var(--contrast-color)"
     }
     document.getElementById('loading').style.width = width+ "vw"

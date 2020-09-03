@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+  }
+  
+
+input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    float: left;
+    width: 80%;
+    background: var(--darker-color);
+    color: white;
+}
+  
+button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: var(--darker-color);
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+    border: none;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+    border-left: 2px solid var(--contrast-color);
+  }
+  
+button:hover {
+    background: var(--contrast-color);
+}
+
+#inner-container-input {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid var(--contrast-color);
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+}

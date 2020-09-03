@@ -26,7 +26,6 @@ app.get("/", async (req, res) => {
 })
 
 wss.on('connection', (ws) => {
-    console.log('client connected')
     ws.send('conmessage:Connection successful')
 
     ws.on('message', async (message) => {
