@@ -1,4 +1,4 @@
-const wspath  = 'ws://' + window.location.hostname + ':8080/download'
+const wspath  = 'wss://' + window.location.hostname + ':443/download'
 const socket = new WebSocket(wspath)
 
 socket.addEventListener('open', (event) => {

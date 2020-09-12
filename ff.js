@@ -34,10 +34,10 @@ wss.on('connection', (ws) => {
                 var link = message.substring(5,message.length).split('/')[4]
                 var option = await getBook.book(link, ws)
                 if (option[0] == 'exists already') {
-                    ws.send('path:/epub/' + option[1] + "[" + option[2] + "].epub")
+                    ws.send("path:/epub/" + option.title + "[" + option.author + "][" + option.chapterCount + "].epub")
                 } else {
-                    ebook.createEpub(option, "./public/epub/" + option.title + "[" + option.author + "][" + option.chapterCount+ "].epub")
-                    ws.send("path:/epub/" + option.title + "[" + option.author + "][" + option.chapterCount +"].epub")
+                    ebook.createEpub(option, "./public/epub/" + option.title + "[" + option.author + "][" + option.chapterCount + "].epub")
+                    ws.send("path:/epub/" + option.title + "[" + option.author + "][" + option.chapterCount + "].epub")
                 }
             } catch (err) {
                 ws.send('errmessage:' + err.message)
